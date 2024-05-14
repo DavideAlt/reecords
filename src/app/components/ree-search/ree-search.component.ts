@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './ree-search.component.scss'
 })
 export class ReeSearchComponent {
+  constructor() {}
 
 }

@@ -1,0 +1,38 @@
+.blog {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.article {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .article h2 {
+    margin-top: 0;
+  }
+  
+  .article p {
+    margin-bottom: 10px;
+  }
+  
+  .article a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #cacaca;
+    color: #000000;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .article a:hover {
+    background-color: #b0b0b0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .blog {
+        grid-template-columns: 1fr;
+    }
+}

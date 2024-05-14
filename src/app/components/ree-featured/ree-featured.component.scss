@@ -1,0 +1,17 @@
+.featured {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.section {
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+}
+
+@media screen and (max-width: 768px) {
+    .featured {
+        grid-template-columns: 1fr;
+    }
+}

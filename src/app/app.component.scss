@@ -1,0 +1,38 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+  }
+
+header h1 {
+    padding-left: 10px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.logo {
+    border-radius: 50%;
+}
+
+.searchbar-container {
+    padding-left: 10px;
+    flex-grow: 1;
+}
+
+.content-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sidebar-container {
+    width: 25%;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.main-content-container {
+    width: 75%;
+    padding: 20px;
+}

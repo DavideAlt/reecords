@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import { ReecordsService } from './reecords.service';
+import { Song } from '../model/Song';
+import { Album } from '../model/Album';
+import { Artist } from '../model/Artist';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OfTheDayService {
+export class OfTheDayService{
   private _currentDate: string;
-  private _songOfTheDay: string | null = null;
-  private _albumOfTheDay: string | null = null;
-  private _artistOfTheDay: string | null = null;
+  private _songOfTheDay: Song;
+  private _albumOfTheDay: Album;
+  private _artistOfTheDay: Artist;
   private _lastUpdatedDate: string | null = null;
 
   constructor(private _reecordsService: ReecordsService) {
     this._currentDate = this.getCurrentDate();
+    this._songOfTheDay = this.songOfTheDay;
+    this._albumOfTheDay = this.albumOfTheDay;
+    this._artistOfTheDay = this.artistOfTheDay;
   }
 
   private getCurrentDate = (): string => {
@@ -25,41 +31,36 @@ export class OfTheDayService {
     return `${day}${month}${year}`;
   }
 
-  updateNewDate() {
+  generateNewSongOfTheDay() {
+    this._reecordsService.getRandomSong().then(song => this._songOfTheDay = song);
+  }
+  
+  generateNewAlbumOfTheDay() {
+    this._reecordsService.getRandomAlbum().then(album => this._albumOfTheDay = album);
+  }
+  
+  generateNewArtistOfTheDay() {
+    this._reecordsService.getRandomArtist().then(artist => this._artistOfTheDay = artist);
+  }
+  
+  get songOfTheDay(): Song {
     if (this._currentDate !== this._lastUpdatedDate) {
-      this._songOfTheDay = this.generateNewSongOfTheDay();
-      this._albumOfTheDay = this.generateNewAlbumOfTheDay();
-      this._artistOfTheDay = this.generateNewArtistOfTheDay();
+      this.generateNewSongOfTheDay();
     }
-  }
-  
-  generateNewSongOfTheDay(): string {
-    return this._reecordsService.getRandomSong();
-  }
-  
-  generateNewAlbumOfTheDay(): string {
-    return this._reecordsService.getRandomAlbum();
-  }
-  
-  generateNewArtistOfTheDay(): string {
-    return this._reecordsService.getRandomArtist();
-  }
-  
-  getSongOfTheDay(): string {
-    this._currentDate = this.getCurrentDate();
-    this.updateNewDate();
     return this._songOfTheDay!;
   }
 
-  getAlbumOfTheDay(): string {
-    this._currentDate = this.getCurrentDate();
-    this.updateNewDate();
+  get albumOfTheDay(): Album {
+    if (this._currentDate !== this._lastUpdatedDate) {
+      this.generateNewAlbumOfTheDay();
+    }
     return this._albumOfTheDay!;
   }
 
-  getArtistOfTheDay(): string {
-    this._currentDate = this.getCurrentDate();
-    this.updateNewDate();
+  get artistOfTheDay(): Artist {
+    if (this._currentDate !== this._lastUpdatedDate) {
+      this.generateNewArtistOfTheDay();
+    }
     return this._artistOfTheDay!;
   }
 }

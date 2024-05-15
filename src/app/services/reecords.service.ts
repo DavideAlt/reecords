@@ -1,14 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReecordsService {
 
-  constructor(private _http: HttpClient) {}
-
+  constructor(private _http: HttpClient, private _authService: AuthService) {}
   
   getRandomSong(): string {
     return '';

@@ -1,2 +1,2 @@
 # reecords
-Music catalogue based on discogs' APIs
+Music catalogue based on discogs and spotify' APIs

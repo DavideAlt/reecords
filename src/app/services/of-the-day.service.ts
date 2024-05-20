@@ -3,22 +3,20 @@ import { ReecordsService } from './reecords.service';
 import { Song } from '../model/Song';
 import { Album } from '../model/Album';
 import { Artist } from '../model/Artist';
+import { Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfTheDayService{
   private _currentDate: string;
-  private _songOfTheDay: Song;
-  private _albumOfTheDay: Album;
-  private _artistOfTheDay: Artist;
-  private _lastUpdatedDate: string | null = null;
+  private _songOfTheDay!: Song;
+  private _albumOfTheDay!: Album;
+  private _artistOfTheDay!: Artist;
+  private _lastUpdatedDate: string = '';
 
   constructor(private _reecordsService: ReecordsService) {
     this._currentDate = this.getCurrentDate();
-    this._songOfTheDay = this.songOfTheDay;
-    this._albumOfTheDay = this.albumOfTheDay;
-    this._artistOfTheDay = this.artistOfTheDay;
   }
 
   private getCurrentDate = (): string => {
@@ -31,36 +29,37 @@ export class OfTheDayService{
     return `${day}${month}${year}`;
   }
 
-  generateNewSongOfTheDay() {
-    this._reecordsService.getRandomSong().then(song => this._songOfTheDay = song);
-  }
-  
-  generateNewAlbumOfTheDay() {
-    this._reecordsService.getRandomAlbum().then(album => this._albumOfTheDay = album);
-  }
-  
-  generateNewArtistOfTheDay() {
-    this._reecordsService.getRandomArtist().then(artist => this._artistOfTheDay = artist);
-  }
-  
-  get songOfTheDay(): Song {
+  getNewSongOfTheDay(): Observable<Song> {
     if (this._currentDate !== this._lastUpdatedDate) {
-      this.generateNewSongOfTheDay();
+      return this._reecordsService.getRandomSong().pipe(
+        tap(song => {
+          this._songOfTheDay = song;
+          this._lastUpdatedDate = this._currentDate;
+        })
+      );
     }
-    return this._songOfTheDay!;
+    return of(this._songOfTheDay);
+  }
+  
+  getNewAlbumOfTheDay(): Observable<Album> {
+    if (this._currentDate !== this._lastUpdatedDate) {
+      return this._reecordsService.getRandomAlbum().pipe(
+        tap(album => {
+          this._albumOfTheDay = album;
+        })
+      );
+    }
+    return of(this._albumOfTheDay);
   }
 
-  get albumOfTheDay(): Album {
+  getNewArtistOfTheDay(): Observable<Artist> {
     if (this._currentDate !== this._lastUpdatedDate) {
-      this.generateNewAlbumOfTheDay();
+      return this._reecordsService.getRandomArtist().pipe(
+        tap(artist => {
+          this._artistOfTheDay = artist;
+        })
+      );
     }
-    return this._albumOfTheDay!;
-  }
-
-  get artistOfTheDay(): Artist {
-    if (this._currentDate !== this._lastUpdatedDate) {
-      this.generateNewArtistOfTheDay();
-    }
-    return this._artistOfTheDay!;
+    return of(this._artistOfTheDay);
   }
 }

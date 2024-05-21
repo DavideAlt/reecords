@@ -8,7 +8,7 @@ import { Observable, of, tap } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class OfTheDayService{
+export class OfTheDayService {
   private _currentDate: string;
   private _songOfTheDay!: Song;
   private _albumOfTheDay!: Album;

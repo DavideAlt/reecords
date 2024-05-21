@@ -8,19 +8,20 @@
   margin-top: 0;
 }
 
-.section {
-  margin-top: 20px;
-}
-
-.section h3 {
-  margin-bottom: 10px;
-}
-
-.section ul {
-  list-style: none;
+.toty ul {
+  list-style-type: none;
   padding: 0;
 }
 
-.section ul li {
-  margin-bottom: 5px;
+.toty li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.toty li:last-child {
+  border-bottom: none;
+}
+
+.toty li:hover {
+  background-color: #f4f4f4;
 }

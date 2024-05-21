@@ -11,7 +11,8 @@ import { Observable, catchError, map, of } from 'rxjs';
 })
 export class ReecordsService {
 
-  private _baseSearchUri ='https://api.spotify.com/v1/';
+  private _spotifyBaseSearchUri = 'https://api.spotify.com/v1/';
+  private _spotifyTopSongsID = '37i9dQZEVXbMDoHDwVN2tF';
 
   constructor(private _http: HttpClient, private _authService: AuthService) {}
 
@@ -21,6 +22,10 @@ export class ReecordsService {
     });
   }
 
+  /* 
+   * START OF METHODS NEEDED FOR FEATURED COMPONENT 
+   */
+  
   private getRandomItem<T>(items: T[]): T {
     return items[Math.floor(Math.random() * items.length)];
   }
@@ -33,7 +38,7 @@ export class ReecordsService {
   getRandomSong(): Observable<Song> {
     const query = this.getRandomSearchQuery();
     
-    return this._http.get<any>(`${this._baseSearchUri}search?q=${query}&type=track&limit=50`, { headers: this.headers})
+    return this._http.get<any>(`${this._spotifyBaseSearchUri}search?q=${query}&type=track&limit=50`, { headers: this.headers})
     .pipe(
       map(res => {
         const tracks = res.tracks.items as Song[];
@@ -42,7 +47,7 @@ export class ReecordsService {
       }),
       catchError(err => {
         console.error('getRandomSong '+ err);
-        return of(new Song(0, '', [], ''));
+        return of(new Song('', '', [], ''));
       })
     );
   }
@@ -50,7 +55,7 @@ export class ReecordsService {
   getRandomAlbum(): Observable<Album> {
     const query = this.getRandomSearchQuery();
 
-    return this._http.get<any>(`${this._baseSearchUri}search?q=${query}&type=album&limit=50`, { headers: this.headers })
+    return this._http.get<any>(`${this._spotifyBaseSearchUri}search?q=${query}&type=album&limit=50`, { headers: this.headers })
       .pipe(
         map(res => {
           const albums = res.albums.items as Album[];
@@ -59,14 +64,14 @@ export class ReecordsService {
         }),
         catchError(err => {
           console.error('getRandomAlbum ', err);
-          return of(new Album(0, '', [], '', 0));
+          return of(new Album('', '', [], '', 0));
         })
       );
   }
   
   getRandomArtist(): Observable<Artist> {
     const query = this.getRandomSearchQuery();
-    return this._http.get<any>(`${this._baseSearchUri}search?q=${query}&type=artist&limit=50`, { headers: this.headers })
+    return this._http.get<any>(`${this._spotifyBaseSearchUri}search?q=${query}&type=artist&limit=50`, { headers: this.headers })
       .pipe(
         map(res => {
           const artists = res.artists.items as Artist[];
@@ -75,8 +80,40 @@ export class ReecordsService {
         }),
         catchError(err => {
           console.error('getRandomArtist ', err);
-          return of(new Artist(0, '', []));
+          return of(new Artist('', '', []));
         })
       );
   }
+  
+  /* 
+   * END OF METHODS NEEDED FOR FEATURED COMPONENT 
+   */
+
+  
+  /* 
+   * START OF METHODS NEEDED FOR TOTY COMPONENT 
+   */
+
+  getTopSongs(): Observable<Song[]> {
+    return this._http.get<any>(`${this._spotifyBaseSearchUri}playlists/${this._spotifyTopSongsID}`, { headers: this.headers })
+    .pipe(
+      map(res => {    
+        return res.tracks.items.map((item: any) => {
+          const track = item.track;
+          const artists = track.artists.map((artist: any) => new Artist(artist.id, artist.name, []));
+          const album = new Album(track.album.id, track.album.name, track.album.release_date, track.album.total_tracks, artists)
+          const song = new Song(track.id, track.name, artists, album.name);
+          return song;
+        });
+      }),
+      catchError(err => {
+        console.error('getTopSongs ', err);
+        return of([]);
+      })
+    );
+  }
+
+  /* 
+   * END OF METHODS NEEDED FOR TOTY COMPONENT 
+   */
 }

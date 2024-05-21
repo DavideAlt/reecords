@@ -1,21 +1,6 @@
 <div class="toty">
     <h2>Top of the Year</h2>
-    <div class="section">
-        <h3>Top songs</h3>
-        <ul>
-            <li></li>
-        </ul>
-    </div>
-    <div class="section">
-        <h3>Top Albums</h3>
-        <ul>
-            <li></li>
-        </ul>
-    </div>
-    <div class="section">
-        <h3>Top Artists</h3>
-        <ul>
-            <li></li>
-        </ul>
-    </div>
+    <ul *ngIf="topSongs.length > 1">
+        <li *ngFor="let s of topSongs"> {{s.name}} <br/> {{s.artists[0].name}} </li>
+    </ul>
 </div>

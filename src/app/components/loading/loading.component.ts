@@ -1,4 +1,4 @@
-import { Component, Input, HostBinding, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'ree-loading',
@@ -10,12 +10,5 @@ export class LoadingComponent {
 
   @HostBinding('class.fade-out') get fadeOut() {
     return !this.isLoading;
-  }
-
-  @HostListener('transitionend', ['$event'])
-  handleTransitionEnd(event: TransitionEvent) {
-    if (event.propertyName === 'opacity' && !this.isLoading) {
-      console.log('Loading screen fade-out completed');
-    }
   }
 }

@@ -13,8 +13,6 @@ export class AppComponent implements OnInit {
   constructor(public _authService: AuthService, private _router: Router) {
     this._router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
-        console.log('a');
-        
         this.isLoading = true;
       }
     });

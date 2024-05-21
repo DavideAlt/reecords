@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Song } from '../../model/Song';
 import { OfTheDayService } from '../../services/of-the-day.service';
-import { AuthService } from '../../auth/auth.service';
 import { Album } from '../../model/Album';
 import { Artist } from '../../model/Artist';
 
@@ -10,12 +9,12 @@ import { Artist } from '../../model/Artist';
   templateUrl: './ree-featured.component.html',
   styleUrl: './ree-featured.component.scss'
 })
-export class ReeFeaturedComponent implements OnInit{
-  songOfTheDay: Song = new Song(0, '', [], '');
-  albumOfTheDay: Album = new Album(0, '', [], '', 0);
-  artistOfTheDay: Artist = new Artist(0, '', []);
+export class ReeFeaturedComponent implements OnInit {
+  songOfTheDay: Song = new Song('', '', [], '');
+  albumOfTheDay: Album = new Album('', '', [], '', 0);
+  artistOfTheDay: Artist = new Artist('', '', []);
 
-  constructor(private _ofTheDay: OfTheDayService, public _authService: AuthService) {}
+  constructor(private _ofTheDay: OfTheDayService) {}
   
   ngOnInit(): void {
     this._ofTheDay.getNewSongOfTheDay().subscribe(song => {

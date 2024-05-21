@@ -1,8 +1,10 @@
+import { Artist } from "./Artist";
+
 export class Song {
     constructor(
-        public id: number,
+        public id: string,
         public name: string,
-        public artists: string[],
+        public artists: Artist[],
         public album: string
     ) {}
 }

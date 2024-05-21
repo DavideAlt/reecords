@@ -1,6 +1,6 @@
 export class Artist {
     constructor(
-        public id: number,
+        public id: string,
         public name: string,
         public genres: string[]
     ) {}

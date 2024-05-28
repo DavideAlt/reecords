@@ -1,0 +1,27 @@
+.song {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.song-info {
+    font-family: Arial, sans-serif;
+}
+
+.song-info > div {
+    margin-bottom: 5px;
+}
+
+.song-info .song-id,
+.song-info .song-name,
+.song-info .song-artists,
+.song-info .song-album {
+    font-weight: bold;
+}
+
+.song-info .id,
+.song-info .name,
+.song-info .artists,
+.song-info .album {
+    color: #333;
+}

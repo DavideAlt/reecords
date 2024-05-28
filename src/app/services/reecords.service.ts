@@ -101,7 +101,7 @@ export class ReecordsService {
         return res.tracks.items.map((item: any) => {
           const track = item.track;
           const artists = track.artists.map((artist: any) => new Artist(artist.id, artist.name, []));
-          const album = new Album(track.album.id, track.album.name, track.album.release_date, track.album.total_tracks, artists)
+          const album = new Album(track.album.id, track.album.name, track.album.release_date, track.album.total_tracks, artists);
           const song = new Song(track.id, track.name, artists, album.name);
           return song;
         });
@@ -116,4 +116,24 @@ export class ReecordsService {
   /* 
    * END OF METHODS NEEDED FOR TOTY COMPONENT 
    */
+
+    /* 
+   * START OF METHODS NEEDED FOR SONG-DETAIL COMPONENT 
+   */
+
+    getSongById(trackID: string): Observable<Song> {
+      return this._http.get<any>(`${this._spotifyBaseSearchUri}tracks/${trackID}`, { headers: this.headers })
+      .pipe(
+        map(track => {
+        const artists = track.artists.map((artist: any) => new Artist(artist.id, artist.name, []));
+        const album = new Album(track.album.id, track.album.name, track.album.release_date, track.album.total_tracks, artists);
+        const foundTrack = new Song(track.id, track.name, artists, album.name);
+        return foundTrack;
+      })
+    );
+    }
+  
+    /* 
+     * END OF METHODS NEEDED FOR SONG-DETAIL COMPONENT 
+     */
 }

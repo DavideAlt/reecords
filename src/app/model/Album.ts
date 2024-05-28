@@ -4,6 +4,7 @@ export class Album {
         public name: string,
         public artists: string[],
         public releaseDate: string,
-        public totalTracks: number
+        public totalTracks: number,
+        public imageRef: string
     ) {}
 }

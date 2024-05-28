@@ -3,6 +3,7 @@ import { Song } from '../../model/Song';
 import { ActivatedRoute } from '@angular/router';
 import { ReecordsService } from '../../services/reecords.service';
 import { Artist } from '../../model/Artist';
+import { Album } from '../../model/Album';
 
 @Component({
   selector: 'ree-song-detail',
@@ -13,7 +14,7 @@ export class ReeSongDetailComponent implements OnInit{
   song: Song = new Song('IDIDIDID','NAMENAME', [
     new Artist('', 'ARTISTARTIST', []),
     new Artist('', 'ARTIST22222', [])
-  ], 'ALBUMALBUM');
+  ], new Album('', '', [], '', 0, ''));
 
   constructor(private _route: ActivatedRoute, private _reecordsService: ReecordsService) {}
 

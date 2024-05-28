@@ -47,7 +47,7 @@ export class ReecordsService {
       }),
       catchError(err => {
         console.error('getRandomSong '+ err);
-        return of(new Song('', '', [], ''));
+        return of(new Song('', '', [], new Album('', '', [], '', 0, '')));
       })
     );
   }
@@ -60,11 +60,11 @@ export class ReecordsService {
         map(res => {
           const albums = res.albums.items as Album[];
           const album = this.getRandomItem(albums);
-          return new Album(album.id, album.name, album.artists, album.releaseDate, album.totalTracks);
+          return new Album(album.id, album.name, album.artists, album.releaseDate, album.totalTracks, album.imageRef);
         }),
         catchError(err => {
           console.error('getRandomAlbum ', err);
-          return of(new Album('', '', [], '', 0));
+          return of(new Album('', '', [], '', 0, ''));
         })
       );
   }
@@ -101,8 +101,8 @@ export class ReecordsService {
         return res.tracks.items.map((item: any) => {
           const track = item.track;
           const artists = track.artists.map((artist: any) => new Artist(artist.id, artist.name, []));
-          const album = new Album(track.album.id, track.album.name, track.album.release_date, track.album.total_tracks, artists);
-          const song = new Song(track.id, track.name, artists, album.name);
+          const album = new Album(track.album.id, track.album.name, track.album.release_date, track.album.total_tracks, artists, track.album.images[0].url);
+          const song = new Song(track.id, track.name, artists, album);
           return song;
         });
       }),
@@ -126,8 +126,8 @@ export class ReecordsService {
       .pipe(
         map(track => {
         const artists = track.artists.map((artist: any) => new Artist(artist.id, artist.name, []));
-        const album = new Album(track.album.id, track.album.name, track.album.release_date, track.album.total_tracks, artists);
-        const foundTrack = new Song(track.id, track.name, artists, album.name);
+        const album = new Album(track.album.id, track.album.name, track.album.release_date, track.album.total_tracks, artists, track.album.images[0].url);
+        const foundTrack = new Song(track.id, track.name, artists, album);
         return foundTrack;
       })
     );

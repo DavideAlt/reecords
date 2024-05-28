@@ -1,16 +1,19 @@
 <div class="song">
+    <div class="song-image">
+        <img src={{song.album.imageRef}} alt="Album Cover">
+    </div>
     <div class="song-info">
         <div class="song-id">
-            <p class="id"> ID: {{song.id}}</p>
+            <p class="id">ID: {{song.id}}</p>
         </div>
         <div class="song-name">
-            <p class="name"> Name: {{song.name}} </p>
+            <p class="name">Name: {{song.name}}</p>
         </div>
         <div class="song-artists">
-            <p class="artists"> Artist: {{song.artists[0].name}} </p>
+            <p class="artists">Artist: {{song.artists[0].name}}</p>
         </div>
         <div class="song-album">
-            <p class="album"> Album: {{song.album}} </p>
+            <p class="album">Album: {{song.album.name}}</p>
         </div>
     </div>
 </div>

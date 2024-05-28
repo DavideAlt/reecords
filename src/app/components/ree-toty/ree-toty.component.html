@@ -1,6 +1,6 @@
 <div class="toty">
     <h2>Top of the Year</h2>
     <ul *ngIf="topSongs.length > 1">
-        <li *ngFor="let s of topSongs"> {{s.name}} <br/> {{s.artists[0].name}} </li>
+        <li *ngFor="let s of topSongs" (click)="goToSongDetail(s.id)"> {{s.name}} <br/> {{s.artists[0].name}} </li>
     </ul>
 </div>

@@ -1,27 +1,35 @@
 .song {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 20px;
     border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.song-image img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
 }
 
 .song-info {
-    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
-.song-info > div {
-    margin-bottom: 5px;
+.song-info p {
+    margin: 5px 0;
 }
 
-.song-info .song-id,
-.song-info .song-name,
-.song-info .song-artists,
-.song-info .song-album {
+.song-id .id,
+.song-name .name,
+.song-artists .artists,
+.song-album .album {
+    font-size: 16px;
     font-weight: bold;
-}
-
-.song-info .id,
-.song-info .name,
-.song-info .artists,
-.song-info .album {
-    color: #333;
 }

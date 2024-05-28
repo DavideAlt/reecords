@@ -10,8 +10,8 @@ import { Artist } from '../../model/Artist';
   styleUrl: './ree-featured.component.scss'
 })
 export class ReeFeaturedComponent implements OnInit {
-  songOfTheDay: Song = new Song('', '', [], '');
-  albumOfTheDay: Album = new Album('', '', [], '', 0);
+  songOfTheDay: Song = new Song('', '', [], new Album('', '', [], '', 0, ''));
+  albumOfTheDay: Album = new Album('', '', [], '', 0, '');
   artistOfTheDay: Artist = new Artist('', '', []);
 
   constructor(private _ofTheDay: OfTheDayService) {}

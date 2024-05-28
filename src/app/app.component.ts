@@ -7,21 +7,13 @@ import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Rout
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
-  isLoading = true;
+export class AppComponent {
 
-  constructor(public _authService: AuthService, private _router: Router) {
-    this._router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.isLoading = true;
-      }
-    });
-  }
+  constructor(public _authService: AuthService, private _router: Router) {}
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1500);
+
+  navigateToHome() {
+    this._router.navigate(['\main']);
   }
 
   login() {

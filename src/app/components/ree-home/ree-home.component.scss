@@ -1,0 +1,44 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+  }
+
+header h1 {
+    padding-left: 10px;
+}
+
+.logo {
+    width: 75px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.searchbar-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.content-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sidebar-container {
+    width: 25%;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+.main-content-container {
+    width: 75%;
+    padding: 20px;
+}
+
+.featured-container {
+    margin-bottom: 20px;
+}

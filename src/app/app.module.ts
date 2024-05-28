@@ -12,6 +12,7 @@ import { ReeBlogComponent } from './components/ree-blog/ree-blog.component';
 import { ReeSearchComponent } from './components/ree-search/ree-search.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ReeSongDetailComponent } from './components/ree-song-detail/ree-song-detail.component';
+import { ReeHomeComponent } from './components/ree-home/ree-home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ReeSongDetailComponent } from './components/ree-song-detail/ree-song-de
     ReeBlogComponent,
     ReeSearchComponent,
     LoadingComponent,
-    ReeSongDetailComponent
+    ReeSongDetailComponent,
+    ReeHomeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,35 @@
+<ree-loading [isLoading]="isLoading"></ree-loading>
+<div *ngIf="!isLoading">
+    <header>
+        <div class="logo-container">
+            <img class="logo" src="https://as2.ftcdn.net/v2/jpg/02/18/99/19/1000_F_218991944_B9ryzMcHfSSNVSXzHs891phcQOqlPoQR.jpg" alt="reecords logo">
+        </div>
+        <h1> Reecords </h1>
+        <div class="searchbar-container">
+            <ree-search />
+        </div>
+        <div *ngIf="!_authService.isLoggedIn">
+            <button (click)="login()">Login with Spotify</button>
+        </div>
+        <div *ngIf="_authService.isLoggedIn">
+          <p>You are logged in.</p>
+          <button (click)="logout()">Logout</button>
+        </div>
+        
+    </header>
+    
+    <div class="content-container">
+        <div class="sidebar-container">
+            <ree-toty />
+        </div>
+        <div class="main-content-container">
+            <div class="featured-container">
+                <ree-featured />
+            </div>
+            <div class="blog-container">
+                <ree-blog />
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet />

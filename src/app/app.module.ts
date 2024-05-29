@@ -13,6 +13,8 @@ import { ReeSearchComponent } from './components/ree-search/ree-search.component
 import { LoadingComponent } from './components/loading/loading.component';
 import { ReeSongDetailComponent } from './components/ree-song-detail/ree-song-detail.component';
 import { ReeHomeComponent } from './components/ree-home/ree-home.component';
+import { ReeArticleComponent } from './components/ree-article/ree-article.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { ReeHomeComponent } from './components/ree-home/ree-home.component';
     ReeSearchComponent,
     LoadingComponent,
     ReeSongDetailComponent,
-    ReeHomeComponent
+    ReeHomeComponent,
+    ReeArticleComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

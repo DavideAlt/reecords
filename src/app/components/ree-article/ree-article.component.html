@@ -1,0 +1,5 @@
+<article>
+    <h1> {{article?.title || 'Article not found'}} </h1>
+    <p class="meta">Posted on {{article?.releaseDate || ''}} by {{article?.author || ''}}</p>
+    <p> {{article?.content || ''}} </p>
+</article>

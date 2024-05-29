@@ -60,7 +60,7 @@ export class ReecordsService {
         map(res => {
           const albums = res.albums.items as Album[];
           const album = this.getRandomItem(albums);
-          return new Album(album.id, album.name, album.artists, album.releaseDate, album.totalTracks, album.imageRef);
+          return new Album(album.id, album.name, album.artists, album.release_date, album.total_tracks, album.imageRef);
         }),
         catchError(err => {
           console.error('getRandomAlbum ', err);

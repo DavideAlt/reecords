@@ -1,14 +1,28 @@
 <div class="featured">
-    <div class="section">
+    <div class="section" [@hoverAnimation]="hoverSong" (mouseover)="hoverSong = 'hover'" (mouseout)="hoverSong = 'normal'">
         <h2>Song of the day</h2>
-        <p> {{songOfTheDay.name}} </p>
+        <p>{{songOfTheDay.name}}</p>
+        <div class="details">
+            ID: {{songOfTheDay.id}} <br>
+            Artist: {{songOfTheDay.artists[0].name}} <br>
+            Album: {{songOfTheDay.album.name}}
+        </div>
     </div>
-    <div class="section">
+    <div class="section" [@hoverAnimation]="hoverAlbum" (mouseover)="hoverAlbum = 'hover'" (mouseout)="hoverAlbum = 'normal'">
         <h2>Album of the day</h2>
-        <p> {{albumOfTheDay.name}} </p>
+        <p>{{albumOfTheDay.name}}</p>
+        <div class="details">
+            ID: {{albumOfTheDay.id}} <br>
+            Artist: {{albumOfTheDay.artists[0].name}} <br>
+            Release date: {{albumOfTheDay.release_date}}
+        </div>
     </div>
-    <div class="section">
+    <div class="section" [@hoverAnimation]="hoverArtist" (mouseover)="hoverArtist = 'hover'" (mouseout)="hoverArtist = 'normal'">
         <h2>Artist of the day</h2>
-        <p> {{artistOfTheDay.name}} </p>
+        <p>{{artistOfTheDay.name}}</p>
+        <div class="details">
+            ID: {{artistOfTheDay.id}} <br>
+            Genres: {{artistOfTheDay.genres}}
+        </div>
     </div>
 </div>
